@@ -9,6 +9,7 @@ file_to_load = os.path.join("Resources", "budget_data.csv")
 total_months = 0
 total_profit_loss=0
 monthly_change= 0
+total_average_change=0
 with open(file_to_load) as financial_data:
     reader = csv.reader(financial_data)
 
@@ -19,9 +20,9 @@ with open(file_to_load) as financial_data:
         total_months+=1
         monthly_change=int(row[1])
         total_profit_loss=total_profit_loss+monthly_change
-        total_average=int(row[1])
+        total_average_change=int(row[1])
     # print(total_profit_loss)
 
 print(total_months)
 print(total_profit_loss)
-
+print(total_average_change)

@@ -7,6 +7,8 @@ file_to_load = os.path.join("Resources", "election_data.csv")
 
 # Track various financial parameters
 total_votes = 0
+candidates = []
+candidate_vote={}
 
 with open(file_to_load) as election_result:
     reader = csv.reader(election_result)
@@ -16,14 +18,29 @@ with open(file_to_load) as election_result:
 
     for row in reader:
         total_votes+=1
-        total_candidates=(int(row[1]))
-        total_votes+=(int(row[0]))
 
+        candidate_name=row[2]
+
+        if candidate_name not in candidates:
+            candidates.append(candidate_name)
+            candidate_vote[candidate_name]=0
+        
+        candidate_vote[candidate_name]=candidate_vote[candidate_name]+1
+
+        # total_candidates=(int(row[0]))
+        # total_votes+=(int(row[0]))
+        
 print(total_votes)
-print(total_candidates)
-# Complete list of candidaates
-file_to_load = os.path.join("Resources", "election_data.csv")
+print(candidates)
+print(candidate_vote)
 
-with open(file_to_load) as total_list_of_candidates:
-    reader = csv.reader(total_list_of_candidates)
 
+with open(file_to_write,'w') as output:
+    output.write(Election_Result)
+     # Read the header row
+    
+print("Election Results")
+print("-------------------------")
+print(f"Total Votes: {total_votes}")
+print("-------------------------")
+print(f"{candidates[0]}: {candidate_vote[candidates[0]]}")
